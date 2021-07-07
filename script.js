@@ -1,16 +1,12 @@
 const container = document.querySelector('.gridcontainer');
-
-
-
-function resetGrid(){
-    let pixels = document.querySelectorAll('.square');
-    for (const pixel of pixels){
-        pixel.style.backgroundColor = "white";
-    }
-};
+const slider = document.querySelector('#myRange');
+const resetButton = document.getElementById('resetbtn');
+const blackButton = document.getElementById('blackColor');
+const rainbowButton = document.getElementById('rainbow');
+let pixels = document.querySelector('.square');
+const buttons = document.querySelectorAll('.buttons');
 
 function gridSize(sideSize){
-    const container = document.querySelector('.gridcontainer');
     container.style.gridTemplateColumns = `repeat(${sideSize}, 1fr)`
     container.style.gridTemplateRows = `repeat(${sideSize}, 1fr)`
     for (let i = 1; i <= sideSize**2; i++){
@@ -18,26 +14,50 @@ function gridSize(sideSize){
         square.classList.add(`square`)
         container.appendChild(square);
     };
+    pixels = document.querySelectorAll('.square');
+    pixels.forEach(pixel => pixel.addEventListener('mouseout', colorGrid));
 };
 
+gridSize(30); //initial grid
 
-const slider = document.querySelector('#myRange');
-slider.addEventListener('mouseup', function(){
-    resetGrid();
+
+function colorGrid(e){
+    if(container.dataset.color == "black"){
+        e.target.style.backgroundColor = "black";
+    }
+    else if(container.dataset.color == "rainbow"){
+        let randomColor = randomRGB();
+        e.target.style.backgroundColor = `${randomColor}`;
+    }
+};
+
+function randomRGB(){
+    let randomRed = Math.floor(Math.random() * 256);
+    let randomGreen = Math.floor(Math.random() * 256);
+    let randomBlue = Math.floor(Math.random() * 256);
+    return (`RGB(${randomRed}, ${randomGreen}, ${randomBlue})`);
+}
+
+
+function resetGrid(){
+    pixels = document.querySelectorAll('.square');
+    for (pixel of pixels){
+        pixel.style.backgroundColor = "white";
+    };
+};
+
+function pixelSize(){
+    let pixels = container.querySelectorAll('.square');
+    pixels.forEach(pixel => pixel.remove());
     gridSize(slider.value);
-});
-
-
-gridSize(slider.value);
-
-let pixels = document.querySelectorAll('.square');
-for(const pixel of pixels){
-    pixel.addEventListener("mouseover", function(e){
-        e.currentTarget.style.backgroundColor = "black";
-    });
 };
 
-const resetButton = document.getElementById('resetbtn')
-resetButton.addEventListener("click", function(){
-    resetGrid()
+
+resetButton.addEventListener('click', resetGrid);
+blackButton.addEventListener('click', function(){
+    container.dataset.color = "black";
 });
+rainbowButton.addEventListener('click', function(){
+    container.dataset.color = "rainbow";
+});
+slider.addEventListener('mouseup', pixelSize);
