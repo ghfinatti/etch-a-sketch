@@ -3,6 +3,7 @@ const slider = document.querySelector('#myRange');
 const resetButton = document.getElementById('resetbtn');
 const blackButton = document.getElementById('blackColor');
 const rainbowButton = document.getElementById('rainbow');
+const eraserButton = document.getElementById('eraser');
 let pixels = document.querySelector('.square');
 const buttons = document.querySelectorAll('.buttons');
 
@@ -28,6 +29,9 @@ function colorGrid(e){
     else if(container.dataset.color == "rainbow"){
         let randomColor = randomRGB();
         e.target.style.backgroundColor = `${randomColor}`;
+    }
+    else if(container.dataset.color == "eraser"){
+        e.target.style.backgroundColor = "white";
     }
 };
 
@@ -59,5 +63,8 @@ blackButton.addEventListener('click', function(){
 });
 rainbowButton.addEventListener('click', function(){
     container.dataset.color = "rainbow";
+});
+eraserButton.addEventListener('click', function(){
+    container.dataset.color = "eraser";
 });
 slider.addEventListener('mouseup', pixelSize);

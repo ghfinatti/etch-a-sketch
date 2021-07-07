@@ -1,18 +1,70 @@
 html{
     height:100%;
 }
+
+h1{
+ color: rgba(165, 135, 226, 1);
+ align-self: center;
+ font-family: Arial, Helvetica, sans-serif;
+ font-size: 50px;
+}
+
 body{
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 0;
+  margin: 0;
+}
+.gamecontainer{
     display: flex;
-    background-color: black;
-    border: 0;
-    margin: 0;
     height:100%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-right: 180px;
+}
+
+.buttonscontainer{
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+  height: 500px;
+  justify-content: center;
+}
+
+.buttons{
+  margin-bottom:10px;
+  border-radius: 5px;
+  border: 2px solid rgba(165, 135, 226, 1);
+}
+
+#blackColor:hover{
+  background-color: black;
+  color: white;
+}
+
+#rainbow:hover{
+  background: linear-gradient(90deg, rgba(246,172,148,1) 0%, rgba(241,245,146,1) 20%, rgba(126,242,132,1) 38%, rgba(139,166,246,1) 54%, rgba(238,109,223,1) 68%, rgba(227,113,113,1) 83%, rgba(100,183,233,1) 100%);
+}
+
+.buttons:hover{
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0px 0px 5px rgba(165, 135, 226, 1);
 }
 
 .gridcontainer{
     display: grid;
-    height: 600px;
-    width: 600px;
+    height: 500px;
+    width: 500px;
+    border: 5px solid rgba(165, 135, 226, 1);
+}
+
+.menu{
+  color: rgba(165, 135, 226, 1);
+  align-self: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }
 
 .square{
@@ -24,11 +76,15 @@ body{
     width: 100%;
     height: 15px;
     border-radius: 5px;  
-    background: #ffffff;
+    background: white;
     outline: none;
-    opacity: 0.7;
+    opacity: 1;
     -webkit-transition: .2s;
     transition: opacity .2s;
+  }
+
+  .slider:hover{
+    background-color: rgba(255,255,255,0.9);
   }
   
   .slider::-webkit-slider-thumb {
@@ -37,14 +93,29 @@ body{
     width: 25px;
     height: 25px;
     border-radius: 50%; 
-    background: #6bd3ad;
+    background: rgba(165, 135, 226, 1);
     cursor: pointer;
   }
   
+  .slider::-webkit-slider-thumb:hover{
+    background-color: rgba(165, 135, 226, 0.5);
+  }
+
+  .slider::-moz-range-thumb:hover{
+    background-color: rgba(104, 44, 225, 1)
+  }
+
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #95ddc3;
+    background: rgba(165, 135, 226, 1);
     cursor: pointer;
+  }
+
+  .slidertext{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgba(165, 135, 226, 1);
+    align-self: center;
   }
